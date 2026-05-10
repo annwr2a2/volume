@@ -1,0 +1,621 @@
+نعم، هذا كود كامل لصفحة تفاعلية مشابهة للصورة: كل شكل له رسم + قانون + منزلقات تغيّر الأبعاد وتحسب الحجم مباشرة.
+
+انسخه كاملًا في ملف باسم مثلًا:
+
+`volumes.html`
+
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عالم الهندسة - الحجوم التفاعلية</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Tajawal',sans-serif;
+    background:#f8fafc;
+    color:#1e293b;
+}
+
+header{
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
+    color:white;
+    padding:35px 20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:44px;
+}
+
+header p{
+    font-size:21px;
+    margin:10px 0 0;
+}
+
+.container{
+    width:94%;
+    max-width:1150px;
+    margin:30px auto;
+}
+
+.intro{
+    background:white;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 8px 24px rgba(15,23,42,0.08);
+    margin-bottom:28px;
+}
+
+.intro h2{
+    color:#1d4ed8;
+    margin-top:0;
+}
+
+.shape-card{
+    background:white;
+    border-radius:18px;
+    margin-bottom:28px;
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(15,23,42,0.08);
+    border:1px solid #e5e7eb;
+}
+
+.shape-title{
+    padding:18px 24px;
+    border-bottom:1px solid #e5e7eb;
+    font-size:26px;
+    font-weight:900;
+    color:#0f172a;
+}
+
+.shape-content{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    min-height:320px;
+}
+
+.visual{
+    padding:25px;
+    background:#f8fafc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-left:1px solid #e5e7eb;
+}
+
+.controls{
+    padding:30px;
+    position:relative;
+}
+
+.formula{
+    text-align:center;
+    font-size:34px;
+    font-family:serif;
+    margin-bottom:25px;
+    color:#111827;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:70px 1fr 60px;
+    align-items:center;
+    gap:12px;
+    margin:16px 0;
+}
+
+.row label{
+    font-weight:700;
+    color:#334155;
+}
+
+.row span{
+    text-align:center;
+    font-weight:700;
+    color:#1d4ed8;
+}
+
+input[type="range"]{
+    width:100%;
+    accent-color:#2563eb;
+}
+
+.result{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    color:#1d4ed8;
+    padding:14px 16px;
+    border-radius:14px;
+    font-size:22px;
+    font-weight:900;
+    text-align:center;
+    margin-top:22px;
+}
+
+.note{
+    padding:0 30px 25px;
+    font-size:19px;
+    line-height:1.8;
+}
+
+.note ul{
+    margin:0;
+}
+
+svg{
+    max-width:100%;
+    height:auto;
+}
+
+footer{
+    background:#1e3a8a;
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+    font-size:21px;
+    margin-top:40px;
+}
+
+@media(max-width:850px){
+    .shape-content{
+        grid-template-columns:1fr;
+    }
+
+    .visual{
+        border-left:none;
+        border-bottom:1px solid #e5e7eb;
+    }
+
+    header h1{
+        font-size:34px;
+    }
+
+    .formula{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌟 عالم الهندسة - الحجوم 🌟</h1>
+    <p>صفحة تفاعلية لحساب حجم الأشكال الهندسية</p>
+    <p>إعداد الطالبة: <b>مريم أنور خميس البلوشية</b></p>
+</header>
+
+<div class="container">
+
+<div class="intro">
+    <h2>📦 ما هو الحجم؟</h2>
+    <p>
+        الحجم هو مقدار الفراغ الذي يشغله الجسم.  
+        حرّك الأشرطة أسفل كل شكل ولاحظ كيف يتغير الحجم مباشرة.
+    </p>
+</div>
+
+<!-- المكعب -->
+<div class="shape-card">
+    <div class="shape-title">🟦 حجم المكعب</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <polygon points="115,80 210,80 250,45 155,45" fill="#dbeafe" stroke="#334155" stroke-width="2"/>
+                <polygon points="210,80 210,175 250,140 250,45" fill="#bfdbfe" stroke="#334155" stroke-width="2"/>
+                <rect x="115" y="80" width="95" height="95" fill="#eff6ff" stroke="#334155" stroke-width="2"/>
+                <line x1="145" y1="80" x2="185" y2="45" stroke="#64748b"/>
+                <line x1="145" y1="175" x2="185" y2="140" stroke="#64748b"/>
+                <line x1="185" y1="45" x2="185" y2="140" stroke="#64748b"/>
+                <text x="150" y="205" font-size="18" fill="#1e293b">طول الحرف = <tspan id="cubeText">3</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = a³</div>
+
+            <div class="row">
+                <label>الحرف</label>
+                <input type="range" id="cubeA" min="1" max="20" value="3" step="1" oninput="calcAll()">
+                <span id="cubeAVal">3</span>
+            </div>
+
+            <div class="result" id="cubeResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>المكعب له أضلاع متساوية.</li>
+            <li>نستخدمه لتمثيل الصناديق الصغيرة والمكعبات.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- متوازي المستطيلات -->
+<div class="shape-card">
+    <div class="shape-title">📦 حجم متوازي المستطيلات</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <polygon points="80,85 235,85 285,45 130,45" fill="#fde68a" stroke="#334155" stroke-width="2"/>
+                <polygon points="235,85 235,170 285,130 285,45" fill="#fcd34d" stroke="#334155" stroke-width="2"/>
+                <rect x="80" y="85" width="155" height="85" fill="#fef3c7" stroke="#334155" stroke-width="2"/>
+                <text x="130" y="205" font-size="17">الطول = <tspan id="boxLText">5</tspan></text>
+                <text x="235" y="200" font-size="17">العرض = <tspan id="boxWText">3</tspan></text>
+                <text x="50" y="130" font-size="17">الارتفاع = <tspan id="boxHText">2</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = l × w × h</div>
+
+            <div class="row">
+                <label>الطول</label>
+                <input type="range" id="boxL" min="1" max="20" value="5" step="1" oninput="calcAll()">
+                <span id="boxLVal">5</span>
+            </div>
+
+            <div class="row">
+                <label>العرض</label>
+                <input type="range" id="boxW" min="1" max="20" value="3" step="1" oninput="calcAll()">
+                <span id="boxWVal">3</span>
+            </div>
+
+            <div class="row">
+                <label>الارتفاع</label>
+                <input type="range" id="boxH" min="1" max="20" value="2" step="1" oninput="calcAll()">
+                <span id="boxHVal">2</span>
+            </div>
+
+            <div class="result" id="boxResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>يشبه الغرفة أو الكتاب أو خزان الماء.</li>
+            <li>نحسبه بضرب الطول في العرض في الارتفاع.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- الأسطوانة -->
+<div class="shape-card">
+    <div class="shape-title">🥤 حجم الأسطوانة</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <ellipse cx="180" cy="65" rx="75" ry="25" fill="#e0f2fe" stroke="#334155" stroke-width="2"/>
+                <rect x="105" y="65" width="150" height="120" fill="#bae6fd" opacity="0.75"/>
+                <line x1="105" y1="65" x2="105" y2="185" stroke="#334155" stroke-width="2"/>
+                <line x1="255" y1="65" x2="255" y2="185" stroke="#334155" stroke-width="2"/>
+                <ellipse cx="180" cy="185" rx="75" ry="25" fill="#e0f2fe" stroke="#334155" stroke-width="2"/>
+                <line x1="180" y1="65" x2="255" y2="65" stroke="#1d4ed8" stroke-width="2"/>
+                <text x="195" y="55" font-size="17">نق = <tspan id="cylRText">3</tspan></text>
+                <text x="55" y="130" font-size="17">ع = <tspan id="cylHText">8</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = π r² h</div>
+
+            <div class="row">
+                <label>نق</label>
+                <input type="range" id="cylR" min="1" max="15" value="3" step="1" oninput="calcAll()">
+                <span id="cylRVal">3</span>
+            </div>
+
+            <div class="row">
+                <label>الارتفاع</label>
+                <input type="range" id="cylH" min="1" max="20" value="8" step="1" oninput="calcAll()">
+                <span id="cylHVal">8</span>
+            </div>
+
+            <div class="result" id="cylResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>تستخدم في علب العصير والخزانات والأنابيب.</li>
+            <li>π تقريبًا تساوي 3.14.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- الكرة -->
+<div class="shape-card">
+    <div class="shape-title">⚽ حجم الكرة</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <defs>
+                    <radialGradient id="sphereGrad" cx="35%" cy="30%" r="70%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#c4b5fd"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="180" cy="125" r="80" fill="url(#sphereGrad)" stroke="#334155" stroke-width="2"/>
+                <ellipse cx="180" cy="125" rx="80" ry="25" fill="none" stroke="#64748b" stroke-dasharray="5 5"/>
+                <ellipse cx="180" cy="125" rx="25" ry="80" fill="none" stroke="#64748b" stroke-dasharray="5 5"/>
+                <line x1="180" y1="125" x2="260" y2="125" stroke="#7c3aed" stroke-width="2"/>
+                <text x="205" y="115" font-size="17">نق = <tspan id="sphereRText">3</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = ⁴⁄₃ π r³</div>
+
+            <div class="row">
+                <label>نق</label>
+                <input type="range" id="sphereR" min="1" max="15" value="3" step="1" oninput="calcAll()">
+                <span id="sphereRVal">3</span>
+            </div>
+
+            <div class="result" id="sphereResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>الكرة من أشهر الأشكال في الرياضة والفضاء.</li>
+            <li>مثل كرة القدم والكواكب.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- المخروط -->
+<div class="shape-card">
+    <div class="shape-title">🍦 حجم المخروط</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <polygon points="180,40 95,190 265,190" fill="#fed7aa" stroke="#334155" stroke-width="2"/>
+                <ellipse cx="180" cy="190" rx="85" ry="25" fill="#fdba74" stroke="#334155" stroke-width="2"/>
+                <line x1="180" y1="190" x2="265" y2="190" stroke="#ea580c" stroke-width="2"/>
+                <line x1="180" y1="40" x2="180" y2="190" stroke="#64748b" stroke-dasharray="5 5"/>
+                <text x="205" y="180" font-size="17">نق = <tspan id="coneRText">3</tspan></text>
+                <text x="145" y="115" font-size="17">ع = <tspan id="coneHText">7</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = ⅓ π r² h</div>
+
+            <div class="row">
+                <label>نق</label>
+                <input type="range" id="coneR" min="1" max="15" value="3" step="1" oninput="calcAll()">
+                <span id="coneRVal">3</span>
+            </div>
+
+            <div class="row">
+                <label>الارتفاع</label>
+                <input type="range" id="coneH" min="1" max="20" value="7" step="1" oninput="calcAll()">
+                <span id="coneHVal">7</span>
+            </div>
+
+            <div class="result" id="coneResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>يشبه مخروط الآيس كريم أو قبعة الحفلات.</li>
+            <li>حجمه يساوي ثلث حجم أسطوانة لها نفس القاعدة والارتفاع.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- الهرم -->
+<div class="shape-card">
+    <div class="shape-title">🏜️ حجم الهرم</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <polygon points="180,35 75,185 285,185" fill="#fde68a" stroke="#334155" stroke-width="2"/>
+                <polygon points="180,35 120,145 75,185" fill="#facc15" opacity="0.65" stroke="#334155"/>
+                <polygon points="180,35 240,145 285,185" fill="#f59e0b" opacity="0.65" stroke="#334155"/>
+                <polygon points="75,185 120,145 240,145 285,185" fill="#fef3c7" stroke="#334155"/>
+                <line x1="180" y1="35" x2="180" y2="165" stroke="#64748b" stroke-dasharray="5 5"/>
+                <text x="105" y="210" font-size="17">مساحة القاعدة = <tspan id="pyrBText">16</tspan></text>
+                <text x="190" y="105" font-size="17">ع = <tspan id="pyrHText">6</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = ⅓ B h</div>
+
+            <div class="row">
+                <label>القاعدة</label>
+                <input type="range" id="pyrB" min="1" max="50" value="16" step="1" oninput="calcAll()">
+                <span id="pyrBVal">16</span>
+            </div>
+
+            <div class="row">
+                <label>الارتفاع</label>
+                <input type="range" id="pyrH" min="1" max="20" value="6" step="1" oninput="calcAll()">
+                <span id="pyrHVal">6</span>
+            </div>
+
+            <div class="result" id="pyrResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>B تعني مساحة القاعدة.</li>
+            <li>الهرم الأكبر مثال رائع على استخدام الهندسة في البناء.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- المنشور الثلاثي -->
+<div class="shape-card">
+    <div class="shape-title">🔺 حجم المنشور الثلاثي</div>
+
+    <div class="shape-content">
+        <div class="visual">
+            <svg width="360" height="260" viewBox="0 0 360 260">
+                <polygon points="90,170 150,70 210,170" fill="#dcfce7" stroke="#334155" stroke-width="2"/>
+                <polygon points="150,70 250,95 310,190 210,170" fill="#bbf7d0" stroke="#334155" stroke-width="2"/>
+                <polygon points="210,170 310,190 190,190 90,170" fill="#86efac" stroke="#334155" stroke-width="2"/>
+                <line x1="150" y1="70" x2="150" y2="170" stroke="#16a34a" stroke-dasharray="5 5"/>
+                <text x="115" y="195" font-size="17">قاعدة المثلث = <tspan id="triBText">6</tspan></text>
+                <text x="155" y="120" font-size="17">ارتفاع المثلث = <tspan id="triHText">4</tspan></text>
+                <text x="230" y="75" font-size="17">طول المنشور = <tspan id="triLText">8</tspan></text>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <div class="formula">V = ½ b h × L</div>
+
+            <div class="row">
+                <label>قاعدة</label>
+                <input type="range" id="triB" min="1" max="20" value="6" step="1" oninput="calcAll()">
+                <span id="triBVal">6</span>
+            </div>
+
+            <div class="row">
+                <label>ارتفاع</label>
+                <input type="range" id="triH" min="1" max="20" value="4" step="1" oninput="calcAll()">
+                <span id="triHVal">4</span>
+            </div>
+
+            <div class="row">
+                <label>الطول</label>
+                <input type="range" id="triL" min="1" max="20" value="8" step="1" oninput="calcAll()">
+                <span id="triLVal">8</span>
+            </div>
+
+            <div class="result" id="triResult"></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <ul>
+            <li>نحسب مساحة المثلث أولًا، ثم نضربها في طول المنشور.</li>
+            <li>يناسب شرح الخيام والأسقف المثلثة.</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    ✨ تم إعداد وتصميم هذا العمل بواسطة الطالبة:
+    <b>مريم أنور خميس البلوشية</b>
+    <br>
+    تحت إشراف قسم الرياضيات
+</footer>
+
+<script>
+function val(id){
+    return Number(document.getElementById(id).value);
+}
+
+function setText(id,text){
+    document.getElementById(id).textContent = text;
+}
+
+function format(num){
+    return Number(num.toFixed(2));
+}
+
+function calcAll(){
+
+    const pi = Math.PI;
+
+    let cubeA = val("cubeA");
+    setText("cubeAVal", cubeA);
+    setText("cubeText", cubeA);
+    document.getElementById("cubeResult").innerHTML =
+        "الحجم = " + cubeA + "³ = " + format(cubeA ** 3) + " وحدة³";
+
+    let boxL = val("boxL");
+    let boxW = val("boxW");
+    let boxH = val("boxH");
+    setText("boxLVal", boxL);
+    setText("boxWVal", boxW);
+    setText("boxHVal", boxH);
+    setText("boxLText", boxL);
+    setText("boxWText", boxW);
+    setText("boxHText", boxH);
+    document.getElementById("boxResult").innerHTML =
+        "الحجم = " + boxL + " × " + boxW + " × " + boxH +
+        " = " + format(boxL * boxW * boxH) + " وحدة³";
+
+    let cylR = val("cylR");
+    let cylH = val("cylH");
+    setText("cylRVal", cylR);
+    setText("cylHVal", cylH);
+    setText("cylRText", cylR);
+    setText("cylHText", cylH);
+    document.getElementById("cylResult").innerHTML =
+        "الحجم = π × " + cylR + "² × " + cylH +
+        " = " + format(pi * cylR * cylR * cylH) + " وحدة³";
+
+    let sphereR = val("sphereR");
+    setText("sphereRVal", sphereR);
+    setText("sphereRText", sphereR);
+    document.getElementById("sphereResult").innerHTML =
+        "الحجم = ⁴⁄₃ × π × " + sphereR + "³ = " +
+        format((4/3) * pi * sphereR ** 3) + " وحدة³";
+
+    let coneR = val("coneR");
+    let coneH = val("coneH");
+    setText("coneRVal", coneR);
+    setText("coneHVal", coneH);
+    setText("coneRText", coneR);
+    setText("coneHText", coneH);
+    document.getElementById("coneResult").innerHTML =
+        "الحجم = ⅓ × π × " + coneR + "² × " + coneH +
+        " = " + format((1/3) * pi * coneR * coneR * coneH) + " وحدة³";
+
+    let pyrB = val("pyrB");
+    let pyrH = val("pyrH");
+    setText("pyrBVal", pyrB);
+    setText("pyrHVal", pyrH);
+    setText("pyrBText", pyrB);
+    setText("pyrHText", pyrH);
+    document.getElementById("pyrResult").innerHTML =
+        "الحجم = ⅓ × " + pyrB + " × " + pyrH +
+        " = " + format((1/3) * pyrB * pyrH) + " وحدة³";
+
+    let triB = val("triB");
+    let triH = val("triH");
+    let triL = val("triL");
+    setText("triBVal", triB);
+    setText("triHVal", triH);
+    setText("triLVal", triL);
+    setText("triBText", triB);
+    setText("triHText", triH);
+    setText("triLText", triL);
+    document.getElementById("triResult").innerHTML =
+        "الحجم = ½ × " + triB + " × " + triH + " × " + triL +
+        " = " + format(0.5 * triB * triH * triL) + " وحدة³";
+}
+
+calcAll();
+</script>
+
+</body>
+</html>
+```
